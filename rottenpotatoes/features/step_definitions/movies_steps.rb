@@ -23,3 +23,9 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
 end
+
+Then(/^the director of "(.*?)" should be "(.*?)"$/) do |title, director|
+  #Movie.find_by_title(title).director.should equal director
+  movie = Movie.find_by_title(title)
+  expect(movie.director == director)
+end
