@@ -1,7 +1,7 @@
 
 Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
-    Movie.create movie
+    Movie.create(movie)
   end
 end
 
@@ -28,4 +28,10 @@ Then(/^the director of "(.*?)" should be "(.*?)"$/) do |title, director|
   #Movie.find_by_title(title).director.should equal director
   movie = Movie.find_by_title(title)
   expect(movie.director == director)
+end
+
+
+Then /(.*) seed movies should exist/ do | n_seeds |
+  #Movie.count.should be n_seeds.to_i
+  expect((Movie.count == n_seeds.to_i))
 end
